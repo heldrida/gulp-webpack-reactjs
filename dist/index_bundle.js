@@ -64,7 +64,7 @@
 				React.createElement(
 					'p',
 					null,
-					'Hello World!!!'
+					'Hello World!'
 				)
 			);
 		}
