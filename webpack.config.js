@@ -1,18 +1,14 @@
 var path = require("path");
 var webpack = require('webpack');
-var hmr = new webpack.HotModuleReplacementPlugin();
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: __dirname + '/app/index.html',
-  filename: 'index.html',
-  inject: 'body'
-});
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-	entry: {
-	    app: ["./app/index.js"]
-	},
+	entry: [
+			'webpack-dev-server/client?http://localhost:8080',
+			'webpack/hot/dev-server',
+			'./app/index.js'
+	],
 	output: {
 		path: __dirname + '/dist',
 		filename: "index_bundle.js"
@@ -20,12 +16,17 @@ module.exports = {
 	module: {
 		loaders: [
 			{ test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" },
-            { test: /\.css$/, exclude: /node_modules/, loader: "style-loader!css-loader" }
+            { test: /\.scss$/, exclude: /node_modules/, loader: ExtractTextPlugin.extract('style-loader', 'css!sass') }
 		]
 	},
 	plugins: [
-		HtmlWebpackPluginConfig,
-		new ExtractTextPlugin("./dist/app.css"),
-		hmr
+		new webpack.HotModuleReplacementPlugin(),
+		new webpack.NoErrorsPlugin(),
+		new HtmlWebpackPlugin({
+			template: __dirname + '/app/index.html',
+			filename: 'index.html',
+			inject: 'body'
+		}),
+		new ExtractTextPlugin("./dist/app.css")
 	]
 };

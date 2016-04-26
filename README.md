@@ -28,3 +28,4 @@
 		> http://ihaveabackup.net/2015/08/17/sass-with-sourcemaps-webpack-and-live-reload/
 		> http://jarstingstall.github.io/getting-started-with-webpack-part-4/
 		> http://jmfurlott.com/setting-up-react-hot-loader/
+		> http://www.jonathan-petitcolas.com/2016/01/23/webpack-html-plugin-in-a-nutshell.html
